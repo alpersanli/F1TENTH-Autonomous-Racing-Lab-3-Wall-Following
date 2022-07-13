@@ -30,7 +30,7 @@ class WallFollow:
         global prev_time
         #Topics & Subs, Pubs
         lidarscan_topic = '/scan'
-        print("mert")
+        print("Successful")
         drive_topic = '/nav'
         prev_time = rospy.get_time()
         self.lidar_sub = rospy.Subscriber(lidarscan_topic, LaserScan, self.lidar_callback)
@@ -44,10 +44,10 @@ class WallFollow:
         #TODO: implement
         if angle >= -45 and angle <= 225:
             iterator = len(data) * (angle + 90) / 360
-            print("bu")
+            print("Successful")
                 
         if not np.isnan(data[int(iterator)]) and not np.isinf(data[int(iterator)]):
-            print("bu")
+            print("Successful")
         return data[int(iterator)]
 
     def pid_control(self, error, velocity):
@@ -57,7 +57,7 @@ class WallFollow:
         global ki
         global kd
         global prev_time
-        print("mert")
+        print("Successful")
         angle = 0.0
         current_time = rospy.get_time()
         del_time = current_time - prev_time
@@ -81,7 +81,7 @@ class WallFollow:
     def followLeft(self, data, leftDist):
         #Follow left wall as per the algorithm
         #TODO:implement
-        print("mert")
+        print("Successful")
         front_scan_angle = 125
         back_scan_angle = 180
         teta = math.radians(abs(front_scan_angle - back_scan_angle))
@@ -95,7 +95,7 @@ class WallFollow:
     def lidar_callback(self, data):
         """
         """
-        print("mert")
+        print("Successful")
         error = self.followLeft(data.ranges, DESIRED_DISTANCE_LEFT) 
         #TODO: replace with error returned by followLeft
         #send error to pid_control
